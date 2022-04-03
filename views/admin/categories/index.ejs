@@ -28,14 +28,12 @@ include("../../partials/navbar.ejs") %>
           <td><%=category.title%></td>
           <td><%=category.slug%></td>
           <td class="d-flex flex-wrap justify-content-center">
-            <form
-              class="mx-2"
-              action=""
-              onsubmit="confirmCategoryDelete(event, this)"
-            >
+            <div>
               <input type="hidden" name="id" value="<%=category.id%>" />
-              <button class="btn btn-warning">Editar</button>
-            </form>
+              <a href="/admin/categories/edit/<%= category.id %> ">
+                <button class="btn btn-warning">Editar</button></a
+              >
+            </div>
             <form
               method="POST"
               class="mx-2"
