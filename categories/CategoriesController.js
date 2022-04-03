@@ -1,6 +1,4 @@
 const express = require("express");
-const res = require("express/lib/response");
-const { redirect } = require("express/lib/response");
 const { default: slugify } = require("slugify");
 const Category = require("./Category");
 const router = express.Router();
