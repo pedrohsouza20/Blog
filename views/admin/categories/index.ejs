@@ -1,0 +1,49 @@
+<%- include("../../partials/head.ejs") %> <%-
+include("../../partials/navbar.ejs") %>
+<div class="container p-3">
+  <div class="card p-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="mb-3 align-self-center">Categorias</h2>
+      <a href="/admin/categories/new">
+        <button class="mb-3 btn btn-primary align-self-center">
+          Nova Categoria
+        </button>
+      </a>
+    </div>
+
+    <% if(categories.length > 0) { %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Slug</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% categories.forEach((category) => { %>
+        <tr>
+          <td><%=category.id%></td>
+          <td><%=category.title%></td>
+          <td><%=category.slug%></td>
+          <td class="d-flex flex-wrap justify-content-center">
+            <form class="mx-2" action="">
+              <input type="hidden" name="id" value="<%=category.id%>" />
+              <button class="btn btn-warning">Editar</button>
+            </form>
+            <form method="POST" class="mx-2" action="/categories/delete">
+              <input type="hidden" name="id" value="<%=category.id%>" />
+              <button class="btn btn-danger">Deletar</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <%} else { %>
+    <p>Não há nenhuma categoria registrada</p>
+    <%}%>
+  </div>
+</div>
+<%-include("../../partials/footer.ejs") %>
