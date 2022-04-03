@@ -3,7 +3,7 @@ include("../../partials/navbar.ejs") %>
 <div class="container p-3">
   <div class="card p-3">
     <h2 class="mb-3">Novo artigo</h2>
-    <form method="POST" action="/categories/save">
+    <form method="POST" action="/article/save">
       <input
         class="form-control"
         type="text"
@@ -19,6 +19,15 @@ include("../../partials/navbar.ejs") %>
         cols="30"
         rows="10"
       ></textarea>
+      <label for="category">Categoria</label>
+      <select class="form-control" name="category" id="" required>
+        <option value="" selected="selected" disabled>
+          Selecione a categoria
+        </option>
+        <% categories.forEach((category) => { %>
+        <option value="<%= category.id %> "><%= category.title %></option>
+        <% }) %>
+      </select>
       <button class="btn btn-primary mt-3">Cadastrar</button>
     </form>
   </div>
@@ -26,6 +35,7 @@ include("../../partials/navbar.ejs") %>
 <script src="/tinymce/tinymce.min.js"></script>
 <script>
   tinymce.init({
+    language: "pt_BR",
     selector: "#article",
     plugins:
       "advlist, autolink, link, image, lis, print, preview, hr, searchreplace, wordcount, fullscreen, insertdatetime, media, save, table, paste, emoticons",

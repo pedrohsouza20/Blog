@@ -1,0 +1,60 @@
+<%- include("../../partials/head.ejs") %> <%-
+include("../../partials/navbar.ejs") %>
+<div class="container p-3">
+  <div class="card p-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="mb-3 align-self-center">Artigos</h2>
+      <a href="/admin/articles/new">
+        <button class="mb-3 btn btn-primary align-self-center">
+          Novo Artigo
+        </button>
+      </a>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Slug</th>
+          <th>Categoria</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% articles.forEach((article) => { %>
+        <tr>
+          <td><%= article.id %></td>
+          <td><%= article.title %></td>
+          <td><%= article.slug %></td>
+          <td><%= article.category.title %></td>
+          <td>
+
+            <form
+              method="POST"
+              class="mx-2"
+              action="/articles/delete"
+              onsubmit="confirmCategoryDelete(event, this)"
+            >
+              <input type="hidden" name="id" value="<%=article.id%>" />
+              <button class="btn btn-danger">Deletar</button>
+            </form>
+
+
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  function confirmCategoryDelete(event, form) {
+    event.preventDefault();
+    let confirmAnswer = confirm("Deseja deletar o artigo?");
+    if (confirmAnswer) {
+      form.submit();
+    }
+  }
+</script>
+<%-include("../../partials/footer.ejs") %>
