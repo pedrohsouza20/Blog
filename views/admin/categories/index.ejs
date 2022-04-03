@@ -28,11 +28,20 @@ include("../../partials/navbar.ejs") %>
           <td><%=category.title%></td>
           <td><%=category.slug%></td>
           <td class="d-flex flex-wrap justify-content-center">
-            <form class="mx-2" action="">
+            <form
+              class="mx-2"
+              action=""
+              onsubmit="confirmCategoryDelete(event, this)"
+            >
               <input type="hidden" name="id" value="<%=category.id%>" />
               <button class="btn btn-warning">Editar</button>
             </form>
-            <form method="POST" class="mx-2" action="/categories/delete">
+            <form
+              method="POST"
+              class="mx-2"
+              action="/categories/delete"
+              onsubmit="confirmCategoryDelete(event, this)"
+            >
               <input type="hidden" name="id" value="<%=category.id%>" />
               <button class="btn btn-danger">Deletar</button>
             </form>
@@ -46,4 +55,13 @@ include("../../partials/navbar.ejs") %>
     <%}%>
   </div>
 </div>
+<script>
+  function confirmCategoryDelete(event, form) {
+    event.preventDefault();
+    let confirmAnswer = confirm("Deseja deletar a categoria?");
+    if (confirmAnswer) {
+      form.submit();
+    }
+  }
+</script>
 <%-include("../../partials/footer.ejs") %>
