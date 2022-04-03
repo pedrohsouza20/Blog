@@ -1,0 +1,13 @@
+<%- include("partials/head.ejs") %> <%- include("partials/navbar.ejs") %>
+<div class="container p-3">
+  <div class="card p-3">
+    <div class="card-header">
+      <h2><%= article.title %></h2>
+    </div>
+    <div class="card-body">
+      <p><%- article.body %></p>
+    </div>
+  </div>
+</div>
+
+<%-include("partials/footer.ejs") %>
